@@ -52,8 +52,13 @@ def post_message() -> Any:
         message = request.form.get("message")
         if username is not None:
             print(f"POSTMESSAGE: User {username} posts {message}")
+            return redirect(url_for("post_success", **{'message': message}))
 
-        return redirect(url_for("post_success", **{'message': message}))
+        return (
+            json.dumps({"success": False}),
+            400,
+            {"Content-Type": "application/json"}
+        )
 
 
 @app.route("/postsuccess")
