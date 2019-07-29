@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="data:;">
+        <title></title>
+    </head>
+    <body>
+        {% if logged %}
+        <p>Bravo you are logged in !</p>
+
+        <br/>
+
+        <form action="{{ url_for('post_message') }}" method="POST">
+            <input type="text" name="message" value="Some random message...lipsum..."/><br/><br/>
+            <button type="submit" name="button">Post message</button><br/>
+        </form>
+
+        <br/>
+
+        <a href="{{ url_for('logout') }}">Log out</a>
+        {% else %}
+        <p>You are not logged in. Hint: username is <strong>myuser</strong> and password is <strong>1234</strong></p><br/>
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="text" placeholder="username" name="username"/><br/><br/>
+            <input type="password" placeholder="password" name="password"/><br/><br/>
+            <button type="submit" name="button">Login</button><br/>
+        </form>
+        {% endif %}
+    </body>
+</html>
