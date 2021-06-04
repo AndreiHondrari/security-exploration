@@ -2,6 +2,12 @@ import random
 from dataclasses import dataclass
 from typing import Optional
 
+# Yes, I was lazy ...
+PRIME_NUMBERS = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+    71, 73, 79, 83, 89, 97
+]
+
 
 def get_rand(lower=1, upper=100):
     return random.randint(lower, upper + 1)
@@ -27,27 +33,29 @@ def decrypt_message(message, secret_key):
 if __name__ == "__main__":
 
     # define secrets for alice and bob
-    alice_secret_key = get_rand()
-    bob_secret_key = get_rand()
-    print(f"Alice's secret key: {alice_secret_key}")
-    print(f"Bob's secret key: {bob_secret_key}")
+    a = get_rand()
+    b = get_rand()
+    print(f"Alice's secret key: {a}")
+    print(f"Bob's secret key: {b}")
 
     # define common public value
-    common_public_key = get_rand()
-    print(f"Common key between alice and bob: {common_public_key}")
+    # some mathematical mumbo jumbo, where 23 is a prime and 5 is a
+    # prime root modulo 23 ... whatever that is... I ain't got time for this
+    p = 23
+    g = 5
+    print(f"Common DH parameter modulus p: {p}")
+    print(f"Common DH parameter base g: {g}")
 
-    # combine exchangeable keys to create public keys for Alice and Bob
-    alice_public_key = alice_secret_key + common_public_key
-    bob_public_key = bob_secret_key + common_public_key
-    print(f"Alice's public key: {alice_public_key}")
-    print(f"Bob's public key: {bob_public_key}")
+    # combine exchangeable keys to obtain public keys
+    A = g ** a % p
+    B = g ** b % p
 
     # ...exchange combined public keys between alice and bob
     print("Combined public keys are exchanged ...")
 
     # create common private key
-    alice_common_secret_key = alice_secret_key + bob_public_key
-    bob_common_secret_key = bob_secret_key + alice_public_key
+    alice_common_secret_key = B ** a % p
+    bob_common_secret_key = A ** b % p
     print(f"Alice's common secret key: {alice_common_secret_key}")
     print(f"Bob's common secret key: {bob_common_secret_key}")
 
