@@ -106,3 +106,6 @@ venv.bak/
 # Mac
 
 .DS_Store
+
+# Local
+e06_pregenerated_hashes_for_all_permutations_of_length_4/hashes_dictionary
