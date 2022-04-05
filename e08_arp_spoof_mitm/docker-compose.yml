@@ -1,0 +1,19 @@
+
+
+services:
+
+  sender:
+    image: i000_dev_ubuntu
+    command: sleep infinity
+
+  receiver:
+    image: ubuntu
+    command: sleep infinity
+
+  attacker:
+    image: ubuntu
+    command: sleep infinity
+
+
+networks:
+  - unsecure_network
